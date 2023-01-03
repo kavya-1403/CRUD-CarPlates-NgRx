@@ -6,7 +6,7 @@ import { EMPTY, map, mergeMap, withLatestFrom, switchMap } from 'rxjs';
 import { setAPIStatus } from 'src/app/shared/store/app.action';
 import { Appstate } from 'src/app/shared/store/appstate';
 import { PlateNumbersService } from '../plate-numbers.service';
-import { loadPlateNumbers, plateNumbersLoadedSuccessfully, invokeSaveNewPlateNumberAPI,saveNewPlateNumberAPISucess } from './plate-numbers.action';
+import { loadPlateNumbers, plateNumbersLoadedSuccessfully, invokeSaveNewPlateNumberAPI,saveNewPlateNumberAPISucess, invokeDeletePlateNumberAPI, deletePlateNumberAPISuccess } from './plate-numbers.action';
 import { selectPlateNumbers } from './plate-numbers.selector';
  
 @Injectable()
@@ -52,4 +52,26 @@ export class PlateNumbersEffect {
     );
   });
 
+  deleteBooksAPI$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(invokeDeletePlateNumberAPI),
+      switchMap((action) => {
+        this.appStore.dispatch(
+          setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
+        );
+        return this.plateNumbersService.deletePlate(action.id).pipe(
+          map(() => {
+            this.appStore.dispatch(
+              setAPIStatus({
+                apiStatus: { apiResponseMessage: '', apiStatus: 'success' },
+              })
+            );
+            return deletePlateNumberAPISuccess({ id: action.id });
+          })
+        );
+      })
+    );
+  });
 }
+
+

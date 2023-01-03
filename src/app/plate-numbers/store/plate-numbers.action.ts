@@ -18,6 +18,16 @@ export const invokeSaveNewPlateNumberAPI  = createAction(
 );
  
 export const saveNewPlateNumberAPISucess = createAction(
-  '[Books API] save new plate number api success',
+  '[Plate Numbers API] save new plate number api success',
   props<{ newPlateNumber: PlateNumbers }>()
+);
+
+export const invokeDeletePlateNumberAPI = createAction(
+  '[Plate Numbers API] Invoke delete plate number api',
+  props<{id:string}>()
+);
+ 
+export const deletePlateNumberAPISuccess = createAction(
+  '[Plate Numbers API] plate number deleted succussfully',
+  props<{id:string}>()
 );

@@ -1,29 +1,29 @@
 {
   "plateNumbers": [
     {
-      "id": 1,
+      "id": "1",
       "plateNumber": "KAR123",
       "ownerName": "Sam"
     },
     {
-      "id": 2,
+      "id": "2",
       "plateNumber": "MAN234",
       "ownerName": "Alice"
     },
     {
-      "id": 3,
+      "id": "3",
       "plateNumber": "HYD789",
       "ownerName": "Bob"
     },
     {
-      "id": 4,
+      "id": "4",
       "plateNumber": "CHN456",
       "ownerName": "David"
     },
     {
-      "id": 5,
-      "plateNumber": "TRI345",
-      "ownerName": "Sachin"
+      "id": "5",
+      "plateNumber": "TRI567",
+      "ownerName": "John"
     }
   ]
 }
