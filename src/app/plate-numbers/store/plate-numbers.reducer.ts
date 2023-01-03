@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { PlateNumbers } from "../../plate-numbers/store/plate-numbers";
-import { plateNumbersLoadedSuccessfully, saveNewPlateNumberAPISucess, deletePlateNumberAPISuccess } from './plate-numbers.action';
+import { plateNumbersLoadedSuccessfully, saveNewPlateNumberAPISucess, updatePlateNumberAPISucess, deletePlateNumberAPISuccess } from './plate-numbers.action';
 
 export const initialState: ReadonlyArray<PlateNumbers> = [];
  
@@ -16,6 +16,11 @@ export const PlateNumbersReducer = createReducer(
       }),
       on(deletePlateNumberAPISuccess, (state, { id }) => {
         let newState =state.filter((_) => _.id != id);
+        return newState;
+      }),
+      on(updatePlateNumberAPISucess, (state, action) => {
+        let newState = state.filter((_) => _.id != action.updatePlateNumber.id);
+        newState.unshift(action.updatePlateNumber);
         return newState;
       })
 );

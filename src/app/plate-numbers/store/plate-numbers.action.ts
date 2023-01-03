@@ -31,3 +31,12 @@ export const deletePlateNumberAPISuccess = createAction(
   '[Plate Numbers API] plate number deleted succussfully',
   props<{id:string}>()
 );
+export const invokeUpdatePlateNumberAPI = createAction(
+  '[Plate Number API] Inovke update plate number api',
+  props<{ updatePlateNumber: PlateNumbers }>()
+);
+ 
+export const updatePlateNumberAPISucess = createAction(
+  '[Plate Number API] update  plate number api invoked successfully',
+  props<{ updatePlateNumber: PlateNumbers }>()
+);

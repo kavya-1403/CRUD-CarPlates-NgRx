@@ -6,7 +6,7 @@ import { EMPTY, map, mergeMap, withLatestFrom, switchMap } from 'rxjs';
 import { setAPIStatus } from 'src/app/shared/store/app.action';
 import { Appstate } from 'src/app/shared/store/appstate';
 import { PlateNumbersService } from '../plate-numbers.service';
-import { loadPlateNumbers, plateNumbersLoadedSuccessfully, invokeSaveNewPlateNumberAPI,saveNewPlateNumberAPISucess, invokeDeletePlateNumberAPI, deletePlateNumberAPISuccess } from './plate-numbers.action';
+import { loadPlateNumbers, plateNumbersLoadedSuccessfully, invokeSaveNewPlateNumberAPI,saveNewPlateNumberAPISucess, invokeDeletePlateNumberAPI, deletePlateNumberAPISuccess, invokeUpdatePlateNumberAPI, updatePlateNumberAPISucess } from './plate-numbers.action';
 import { selectPlateNumbers } from './plate-numbers.selector';
  
 @Injectable()
@@ -46,6 +46,26 @@ export class PlateNumbersEffect {
               })
             );
             return saveNewPlateNumberAPISucess({ newPlateNumber: data });
+          })
+        );
+      })
+    );
+  });
+  updateBookAPI$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(invokeUpdatePlateNumberAPI),
+      switchMap((action) => {
+        this.appStore.dispatch(
+          setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
+        );
+        return this.plateNumbersService.updatePlates(action.updatePlateNumber).pipe(
+          map((data) => {
+            this.appStore.dispatch(
+              setAPIStatus({
+                apiStatus: { apiResponseMessage: '', apiStatus: 'success' },
+              })
+            );
+            return updatePlateNumberAPISucess({ updatePlateNumber: data });
           })
         );
       })

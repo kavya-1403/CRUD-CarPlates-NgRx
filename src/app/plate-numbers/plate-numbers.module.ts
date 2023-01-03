@@ -10,11 +10,13 @@ import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
 import { AddPlateNumbersComponent } from './add-plate-numbers/add-plate-numbers.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditOwnerNameComponent } from './edit/edit-owner-name.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    AddPlateNumbersComponent
+    AddPlateNumbersComponent,
+    EditOwnerNameComponent
   ],
   imports: [
     CommonModule,

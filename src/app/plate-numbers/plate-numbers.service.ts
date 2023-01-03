@@ -13,6 +13,11 @@ export class PlateNumbersService {
   addPlates(payload:PlateNumbers) {
     return this.http.post<PlateNumbers>('http://localhost:3000/plateNumbers', payload);
   }
+  updatePlates(payload: PlateNumbers) {
+    return this.http.put<PlateNumbers>(
+      `http://localhost:3000/plateNumbers/${payload.id}`,payload
+    );
+    }
   deletePlate(id:string) {
     return this.http.delete(`http://localhost:3000/plateNumbers/${id}`);
   }

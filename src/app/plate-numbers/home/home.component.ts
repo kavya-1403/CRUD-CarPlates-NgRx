@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { loadPlateNumbers, invokeDeletePlateNumberAPI, deletePlateNumberAPISuccess  } from '../store/plate-numbers.action';
 import { selectPlateNumbers } from '../store/plate-numbers.selector';
@@ -14,11 +15,11 @@ declare var window: any;
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit{
-  constructor(private store: Store,private appStore: Store<Appstate>) {}
+  constructor(private router: Router, private store: Store,private appStore: Store<Appstate>) {}
   data!:PlateNumbers
   plateNumbers$ = this.store.pipe(select(selectPlateNumbers))
  
-  displayedColumns: string[] = ['plateNumber','ownerName','delete'];
+  displayedColumns: string[] = ['plateNumber','ownerName','edit','delete'];
   deleteModal: any;
   idToDelete: string = '0';
   ngOnInit(): void {
@@ -30,6 +31,9 @@ export class HomeComponent implements OnInit{
   openDeleteModal(id: string) {
     this.idToDelete = id;
     this.deleteModal.show();
+  }
+  edit(id:string) {
+    this.router.navigate(['/editPlates',id])
   }
   delete() {
     this.store.dispatch(
