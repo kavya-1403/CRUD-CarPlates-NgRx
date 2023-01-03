@@ -1,0 +1,46 @@
+<div class="add-form">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Plate Number</label>
+        <input
+          type="text"
+          formControlName="plateNumber"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f['plateNumber'].errors }"
+        />
+        <div *ngIf="submitted && f['plateNumber'].errors" class="invalid-feedback">
+          <div *ngIf="f['plateNumber'].errors['required']">Plate Number is required</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>Owner Name</label>
+        <input
+          type="text"
+          formControlName="ownerName"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f['ownerName'].errors }"
+        />
+        <div *ngIf="submitted && f['ownerName'].errors" class="invalid-feedback">
+          <div *ngIf="f['ownerName'].errors['required']">Owner Name is required</div>
+          <div *ngIf="f['ownerName'].errors['minlength']">
+            Owner Name must be at least 6 characters
+          </div>
+          <div *ngIf="f['ownerName'].errors['maxlength']">
+            Owner Name must not exceed 20 characters
+          </div>
+        </div>
+      </div>
+      <br/>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Add Plate Number</button>&nbsp;&nbsp;
+        <button
+          type="button"
+          (click)="onReset()"
+          class="btn btn-warning float-right"
+        >
+          Reset
+        </button>
+      </div>
+    </form>
+  </div>

@@ -10,4 +10,7 @@ export class PlateNumbersService {
   getPlateNumbers() {
     return this.http.get<PlateNumbers[]>('http://localhost:3000/plateNumbers');
   }
+  addPlates(payload:PlateNumbers) {
+    return this.http.post<PlateNumbers>('http://localhost:3000/plateNumbers', payload);
+  }
 }

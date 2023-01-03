@@ -8,10 +8,13 @@ import { PlateNumbersEffect } from './store/plate-numbers.effect';
 import { HomeComponent } from './home/home.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
+import { AddPlateNumbersComponent } from './add-plate-numbers/add-plate-numbers.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    AddPlateNumbersComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +22,9 @@ import {MatIconModule} from '@angular/material/icon';
     StoreModule.forFeature('myplates', PlateNumbersReducer),
     EffectsModule.forFeature([PlateNumbersEffect]),
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class PlateNumbersModule { }

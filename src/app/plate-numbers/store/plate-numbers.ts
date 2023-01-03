@@ -1,5 +1,5 @@
 export interface PlateNumbers {
-    id: number;
+    id: string;
     plateNumber: string;
     ownerName: string
 }
