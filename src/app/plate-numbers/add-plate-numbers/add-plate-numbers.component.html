@@ -10,6 +10,18 @@
         />
         <div *ngIf="submitted && f['plateNumber'].errors" class="invalid-feedback">
           <div *ngIf="f['plateNumber'].errors['required']">Plate Number is required</div>
+          <div *ngIf="f['plateNumber'].errors['minlength']">
+            Plate Number must be at least 6 characters
+          </div>
+          <div *ngIf="f['plateNumber'].errors['maxlength']">
+            Plate Number must not exceed 6 characters
+          </div>
+          <div *ngIf="f['plateNumber'].errors['invalidPlateNumber']">
+            The first 3 digits of the plate number should be alphabets and the last 3 digits should be numbers
+          </div>
+          <div *ngIf="f['plateNumber'].errors['notUnique']">
+            Plate Number is not unique
+          </div>
         </div>
       </div>
   

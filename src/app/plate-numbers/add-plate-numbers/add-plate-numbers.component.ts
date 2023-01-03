@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { UUID } from 'angular2-uuid';
 
+import { loadPlateNumbers } from '../store/plate-numbers.action';
+import { ValidatePlateNumber } from './utils/validation'
+
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { setAPIStatus } from 'src/app/shared/store/app.action';
 import { selectAppState } from 'src/app/shared/store/app.selector';
 import { Appstate } from 'src/app/shared/store/appstate';
-import { PlateNumbers } from '../store/plate-numbers';
 import { invokeSaveNewPlateNumberAPI } from '../store/plate-numbers.action';
 
 @Component({
@@ -19,25 +21,24 @@ export class AddPlateNumbersComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private store: Store,private appStore: Store<Appstate>,private router: Router) {
 
   }
+  plateNumbers$!:any
   form!: FormGroup;
   id!:string;
   formValue!:Object;
   submitted = false;
   ngOnInit(): void {
+    this.store.dispatch(loadPlateNumbers());
     this.form = this.formBuilder.group(
       {
-        plateNumber: ['', Validators.required],
-     
+        plateNumber: ['', [Validators.required, Validators.minLength(6),Validators.maxLength(6),ValidatePlateNumber]],
         ownerName: ['', [Validators.required, Validators.minLength(6),Validators.maxLength(40)]],
       },
-      // {
-      //   validators: [Validation.match('password', 'confirmPassword')]
-      // }
     );
   }
   get f(): { [key: string]: AbstractControl } {
     return this.form.controls;
   }
+
   onSubmit(): void {
     this.submitted = true;
 
@@ -57,7 +58,7 @@ export class AddPlateNumbersComponent implements OnInit {
       }
     });
   }
-
+  
   onReset(): void {
     this.submitted = false;
     this.form.reset();
