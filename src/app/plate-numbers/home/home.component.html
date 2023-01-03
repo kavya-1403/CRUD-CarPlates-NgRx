@@ -21,7 +21,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 <div *ngIf="(plateNumbers$ | async)?.length == 0">
-    <p>No Data</p>
+    <p data-testid="no-data">No Data</p>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

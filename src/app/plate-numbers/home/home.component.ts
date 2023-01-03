@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { loadPlateNumbers, invokeDeletePlateNumberAPI, deletePlateNumberAPISuccess  } from '../store/plate-numbers.action';
+import { loadPlateNumbers, invokeDeletePlateNumberAPI  } from '../store/plate-numbers.action';
 import { selectPlateNumbers } from '../store/plate-numbers.selector';
 import { selectAppState } from 'src/app/shared/store/app.selector';
 import { setAPIStatus } from 'src/app/shared/store/app.action';
 import { Appstate } from 'src/app/shared/store/appstate';
-import { PlateNumbers } from '../store/plate-numbers';
+
 
 declare var window: any;
 @Component({
@@ -16,7 +16,6 @@ declare var window: any;
 })
 export class HomeComponent implements OnInit{
   constructor(private router: Router, private store: Store,private appStore: Store<Appstate>) {}
-  data!:PlateNumbers
   plateNumbers$ = this.store.pipe(select(selectPlateNumbers))
  
   displayedColumns: string[] = ['plateNumber','ownerName','edit','delete'];

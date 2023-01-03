@@ -6,20 +6,20 @@
           type="text"
           formControlName="plateNumber"
           class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f['plateNumber'].errors }"
+          [ngClass]="{ 'is-invalid': submitted && form.get('plateNumber')?.errors }"
         />
-        <div *ngIf="submitted && f['plateNumber'].errors" class="invalid-feedback">
-          <div *ngIf="f['plateNumber'].errors['required']">Plate Number is required</div>
-          <div *ngIf="f['plateNumber'].errors['minlength']">
+        <div *ngIf="submitted && form.get('plateNumber')?.errors" class="invalid-feedback">
+          <div *ngIf="form.get('plateNumber')?.errors?.['required']">Plate Number is required</div>
+          <div *ngIf="form.get('plateNumber')?.errors?.['minlength']">
             Plate Number must be at least 6 characters
           </div>
-          <div *ngIf="f['plateNumber'].errors['maxlength']">
+          <div *ngIf="form.get('plateNumber')?.errors?.['maxlength']">
             Plate Number must not exceed 6 characters
           </div>
-          <div *ngIf="f['plateNumber'].errors['invalidPlateNumber']">
+          <div *ngIf="form.get('plateNumber')?.errors?.['invalidPlateNumber']">
             The first 3 digits of the plate number should be alphabets and the last 3 digits should be numbers
           </div>
-          <div *ngIf="f['plateNumber'].errors['notUnique']">
+          <div *ngIf="form.get('plateNumber')?.errors?.['notUniquePlateNumber']">
             Plate Number is not unique
           </div>
         </div>
@@ -31,14 +31,14 @@
           type="text"
           formControlName="ownerName"
           class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f['ownerName'].errors }"
+          [ngClass]="{ 'is-invalid': submitted && form.get('ownerName')?.errors }"
         />
-        <div *ngIf="submitted && f['ownerName'].errors" class="invalid-feedback">
-          <div *ngIf="f['ownerName'].errors['required']">Owner Name is required</div>
-          <div *ngIf="f['ownerName'].errors['minlength']">
+        <div *ngIf="submitted && form.get('ownerName')?.errors" class="invalid-feedback">
+          <div *ngIf="form.get('ownerName')?.errors?.['required']">Owner Name is required</div>
+          <div *ngIf="form.get('ownerName')?.errors?.['minlength']">
             Owner Name must be at least 6 characters
           </div>
-          <div *ngIf="f['ownerName'].errors['maxlength']">
+          <div *ngIf="form.get('ownerName')?.errors?.['maxlength']">
             Owner Name must not exceed 20 characters
           </div>
         </div>

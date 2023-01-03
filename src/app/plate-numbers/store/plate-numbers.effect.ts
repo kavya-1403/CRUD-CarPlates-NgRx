@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
-import { EMPTY, map, mergeMap, withLatestFrom, switchMap } from 'rxjs';
+import { map, mergeMap, withLatestFrom, switchMap } from 'rxjs';
 import { setAPIStatus } from 'src/app/shared/store/app.action';
 import { Appstate } from 'src/app/shared/store/appstate';
 import { PlateNumbersService } from '../plate-numbers.service';
@@ -18,20 +18,17 @@ export class PlateNumbersEffect {
     private appStore: Store<Appstate>
   ) {}
  
-  loadAllBooks$ = createEffect(() =>
+  loadAllPlates$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadPlateNumbers),
       withLatestFrom(this.store.pipe(select(selectPlateNumbers))),
-      mergeMap(([, bookformStore]) => {
-        if (bookformStore.length > 0) {
-          return EMPTY;
-        }
+      mergeMap(() => {
         return this.plateNumbersService.getPlateNumbers().pipe(map((data) => plateNumbersLoadedSuccessfully({ plateNumbers: data })));
       })
     )
   );
 
-  saveNewBook$ = createEffect(() => {
+  saveNewPlate$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(invokeSaveNewPlateNumberAPI),
       switchMap((action:any) => {
@@ -51,7 +48,7 @@ export class PlateNumbersEffect {
       })
     );
   });
-  updateBookAPI$ = createEffect(() => {
+  updatePlate$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(invokeUpdatePlateNumberAPI),
       switchMap((action) => {
@@ -72,7 +69,7 @@ export class PlateNumbersEffect {
     );
   });
 
-  deleteBooksAPI$ = createEffect(() => {
+  deletePlate$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(invokeDeletePlateNumberAPI),
       switchMap((action) => {
