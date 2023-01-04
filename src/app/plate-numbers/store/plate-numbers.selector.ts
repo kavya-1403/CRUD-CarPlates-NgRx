@@ -11,3 +11,4 @@ export const selectPlateNumbersById = (id: string) =>
     }
     return plateNumberbyId[0];
   });
+
