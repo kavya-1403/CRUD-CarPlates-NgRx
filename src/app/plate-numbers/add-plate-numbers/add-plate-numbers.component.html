@@ -20,7 +20,7 @@
             The first 3 digits of the plate number should be alphabets and the last 3 digits should be numbers
           </div>
           <div *ngIf="form.get('plateNumber')?.errors?.['notUniquePlateNumber']">
-            Plate Number is not unique
+            Plate Number already exists
           </div>
         </div>
       </div>
@@ -36,7 +36,7 @@
         <div *ngIf="submitted && form.get('ownerName')?.errors" class="invalid-feedback">
           <div *ngIf="form.get('ownerName')?.errors?.['required']">Owner Name is required</div>
           <div *ngIf="form.get('ownerName')?.errors?.['minlength']">
-            Owner Name must be at least 6 characters
+            Owner Name must be at least 3 characters
           </div>
           <div *ngIf="form.get('ownerName')?.errors?.['maxlength']">
             Owner Name must not exceed 20 characters
@@ -45,7 +45,7 @@
       </div>
       <br/>
       <div class="form-group">
-        <button type="submit" class="btn btn-primary">Add Plate Number</button>&nbsp;&nbsp;
+        <button type="submit" class="btn btn-primary">Add</button>&nbsp;&nbsp;
         <button
           type="button"
           (click)="onReset()"

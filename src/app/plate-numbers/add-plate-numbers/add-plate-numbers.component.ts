@@ -54,8 +54,8 @@ export class AddPlateNumbersComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.minLength(6),
-          Validators.maxLength(40),
+          Validators.minLength(3),
+          Validators.maxLength(20),
         ],
       ],
     });
