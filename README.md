@@ -4,13 +4,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `ng serve --open` for a dev server. The application will open in the url `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Backend 
 
 The data is stored in db.json file. The backend API's are consumed using json-server. 
 Run json `npm run json-run` command to run the json-server 
-The data can be loaded using the below url
+The data can be accessed using the below url
 `http://localhost:3000/plateNumbers`
 
 ## Build
