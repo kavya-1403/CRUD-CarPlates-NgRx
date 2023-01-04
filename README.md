@@ -3,8 +3,12 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
 
 ## Development server
+Clone the repo fromthe below link
+https://github.com/kavya-1403/CRUD-CarPlates-NgRx.git
 
-Run `ng serve --open` for a dev server. The application will open in the url `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. Run `npm i` command within the application to install node_modules
+2. Run `npm run json-run` command to run the json-server
+3. Run `ng serve --open` for a dev server. The application will open in the url `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Backend 
 
