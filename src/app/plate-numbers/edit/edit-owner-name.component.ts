@@ -6,8 +6,8 @@ import { setAPIStatus } from 'src/app/shared/store/app.action';
 import { selectAppState } from 'src/app/shared/store/app.selector';
 import { Appstate } from 'src/app/shared/store/appstate';
 import { PlateNumbers } from '../store/plate-numbers';
-import { invokeUpdatePlateNumberAPI } from '../store/plate-numbers.action';
-import { selectPlateNumbersById } from '../store/plate-numbers.selector';
+import { PlateActions } from '../store/plate-numbers.action';
+import { PlateSelectors } from '../store/plate-numbers.selector';
 
 @Component({
   selector: 'app-edit-owner-name',
@@ -26,7 +26,7 @@ export class EditOwnerNameComponent implements OnInit {
     let fetchData$ = this.route.paramMap.pipe(
       switchMap((params) => {
         var id = params.get('id')!;
-        return this.store.pipe(select(selectPlateNumbersById(id)));
+        return this.store.pipe(select(PlateSelectors.selectPlateNumbersById(id)));
       })
     );
     fetchData$.subscribe((data) => {
@@ -41,7 +41,7 @@ export class EditOwnerNameComponent implements OnInit {
 
   udapte() {
     this.store.dispatch(
-      invokeUpdatePlateNumberAPI({ updatePlateNumber: { ...this.plateForm } })
+      PlateActions.invokeUpdatePlateNumberAPI({ updatePlateNumber: { ...this.plateForm } })
     );
     let apiStatus$ = this.appStore.pipe(select(selectAppState));
     apiStatus$.subscribe((apState) => {

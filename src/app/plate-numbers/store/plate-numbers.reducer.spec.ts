@@ -1,6 +1,6 @@
 import * as fromReducer from './plate-numbers.reducer';
 import {Action} from "@ngrx/store";
-import { plateNumbersLoadedSuccessfully } from './plate-numbers.action';
+import { PlateActions } from './plate-numbers.action';
 
 describe('Plate Numbers Reducer', () => {
   const {initialState, PlateNumbersReducer} = fromReducer;
@@ -13,7 +13,7 @@ describe('Plate Numbers Reducer', () => {
   });
   describe('Plate Numbers Loaded action', function () {
     it('should have 1 plate data after loading plates',  () => {
-      const action = plateNumbersLoadedSuccessfully({plateNumbers: [sampleData]});
+      const action = PlateActions.plateNumbersLoadedSuccessfully({plateNumbers: [sampleData]});
       const state = PlateNumbersReducer(initialState, action);
       expect(state.length).toEqual(1);
       expect(state[0]).toBe(sampleData);

@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
@@ -6,8 +5,8 @@ import { map, mergeMap, withLatestFrom, switchMap } from 'rxjs';
 import { setAPIStatus } from 'src/app/shared/store/app.action';
 import { Appstate } from 'src/app/shared/store/appstate';
 import { PlateNumbersService } from '../plate-numbers.service';
-import { loadPlateNumbers, plateNumbersLoadedSuccessfully, invokeSaveNewPlateNumberAPI,saveNewPlateNumberAPISucess, invokeDeletePlateNumberAPI, deletePlateNumberAPISuccess, invokeUpdatePlateNumberAPI, updatePlateNumberAPISucess } from './plate-numbers.action';
-import { selectPlateNumbers } from './plate-numbers.selector';
+import { PlateActions } from './plate-numbers.action';
+import { PlateSelectors } from './plate-numbers.selector';
  
 @Injectable()
 export class PlateNumbersEffect {
@@ -20,17 +19,17 @@ export class PlateNumbersEffect {
  
   loadAllPlates$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(loadPlateNumbers),
-      withLatestFrom(this.store.pipe(select(selectPlateNumbers))),
+      ofType(PlateActions.loadPlateNumbers),
+      withLatestFrom(this.store.pipe(select(PlateSelectors.selectPlateNumbers))),
       mergeMap(() => {
-        return this.plateNumbersService.getPlateNumbers().pipe(map((data) => plateNumbersLoadedSuccessfully({ plateNumbers: data })));
+        return this.plateNumbersService.getPlateNumbers().pipe(map((data) => PlateActions.plateNumbersLoadedSuccessfully({ plateNumbers: data })));
       })
     )
   );
 
   saveNewPlate$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(invokeSaveNewPlateNumberAPI),
+      ofType(PlateActions.invokeSaveNewPlateNumberAPI),
       switchMap((action:any) => {
         this.appStore.dispatch(
           setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
@@ -42,7 +41,7 @@ export class PlateNumbersEffect {
                 apiStatus: { apiResponseMessage: '', apiStatus: 'success' },
               })
             );
-            return saveNewPlateNumberAPISucess({ newPlateNumber: data });
+            return PlateActions.saveNewPlateNumberAPISucess({ newPlateNumber: data });
           })
         );
       })
@@ -50,7 +49,7 @@ export class PlateNumbersEffect {
   });
   updatePlate$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(invokeUpdatePlateNumberAPI),
+      ofType(PlateActions.invokeUpdatePlateNumberAPI),
       switchMap((action) => {
         this.appStore.dispatch(
           setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
@@ -62,7 +61,7 @@ export class PlateNumbersEffect {
                 apiStatus: { apiResponseMessage: '', apiStatus: 'success' },
               })
             );
-            return updatePlateNumberAPISucess({ updatePlateNumber: data });
+            return PlateActions.updatePlateNumberAPISucess({ updatePlateNumber: data });
           })
         );
       })
@@ -71,7 +70,7 @@ export class PlateNumbersEffect {
 
   deletePlate$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(invokeDeletePlateNumberAPI),
+      ofType(PlateActions.invokeDeletePlateNumberAPI),
       switchMap((action) => {
         this.appStore.dispatch(
           setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
@@ -83,7 +82,7 @@ export class PlateNumbersEffect {
                 apiStatus: { apiResponseMessage: '', apiStatus: 'success' },
               })
             );
-            return deletePlateNumberAPISuccess({ id: action.id });
+            return PlateActions.deletePlateNumberAPISuccess({ id: action.id });
           })
         );
       })

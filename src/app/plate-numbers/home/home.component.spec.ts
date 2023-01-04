@@ -3,7 +3,6 @@ import { By } from '@angular/platform-browser'
 import { HomeComponent } from './home.component';
 import {MockStore, provideMockStore} from "@ngrx/store/testing";
 import {PlateNumbers} from "../store/plate-numbers";
-import {selectPlateNumbers} from "../store/plate-numbers.selector";
 import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import {ReactiveFormsModule} from "@angular/forms";
 
@@ -29,7 +28,7 @@ import {ReactiveFormsModule} from "@angular/forms";
               expect(home).toBeTruthy();
             });
           
-            it('should show 0 pkates from the store when there is no data', () => {
+            it('should show 0 plates from the store when there is no data', () => {
                 let tableRows = fixture.debugElement.queryAll(By.css('tbody tr'));
                 expect(tableRows.length).toBe(0); 
                

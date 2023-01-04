@@ -1,23 +1,23 @@
 <div class="container">
-    <legend>Update Owner Name</legend>
+    <h2>Update Owner Name</h2>
     <div class="mb-3">
-      <label for="txtBookName" class="form-label">Plate Number</label>
+      <label for="plateNumber" class="form-label">Plate Number</label>
       <input
         type="text"
         [(ngModel)]="plateForm.plateNumber"
         class="form-control"
-        id="txtBookName"
+        id="plateNumber"
         disabled
       />
-    </div>
+    </div><br/>
     <div class="mb-3">
-      <label for="txtAuthor" class="form-label">Owner Name</label>
+      <label for="ownerName" class="form-label">Owner Name</label>
       <input
         type="text"
         [(ngModel)]="plateForm.ownerName"
         class="form-control"
-        id="txtAuthor"
+        id="ownerName"
       />
     </div>
-    <button type="button" class="btn btn-dark" (click)="udapte()">Update Owner Name</button>
+    <button type="button" class="btn btn-dark" (click)="udapte()">Update</button>
   </div>

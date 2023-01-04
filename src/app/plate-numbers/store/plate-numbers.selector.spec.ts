@@ -1,4 +1,4 @@
-import {selectPlateNumbers} from "./plate-numbers.selector";
+import {PlateSelectors} from "./plate-numbers.selector";
 
 describe('Plate Numbers Selectors', () => {
 
@@ -34,8 +34,7 @@ describe('Plate Numbers Selectors', () => {
 
           
   it('should get the plates', () => {
-    const result = selectPlateNumbers.projector(initialState);
-    console.log(result)
+    const result = PlateSelectors.selectPlateNumbers.projector(initialState);
     expect(result.length).toBe(5);
   });
  
